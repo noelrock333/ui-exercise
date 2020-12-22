@@ -18,7 +18,7 @@ const EmailRow = ({ email, checked }) => {
       </div>
       <div className="subject">{subject}</div>
       <div className="tags">
-        {tags.map((item, index) => (<div key={index} className="tag">{item}</div>))}
+        {tags?.map((item, index) => (<div key={index} className="tag">{item}</div>))}
       </div>
       <div className="date">{moment(date).format('MMM D, YYYY')}</div>
     </EmailRowWrapper>
