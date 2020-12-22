@@ -10,7 +10,6 @@ const InboxWrapper = styled.div`
   overflow-y: hidden;
   .actions-menu {
     grid-column: 2 / -1;
-    grid-row: 1fr;
   }
   .aside-menu {
     grid-column: 1 / 2;
