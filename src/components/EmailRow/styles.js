@@ -34,6 +34,12 @@ const EmailRowWrapper = styled.div`
     }
   }
 
+  @media (max-width: 750px) {
+    .tags, .date {
+      display: none;
+    }
+  }
+
   .checkbox {
     width: 30px;
   }

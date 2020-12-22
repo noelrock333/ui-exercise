@@ -8,6 +8,9 @@ import emails from '../../emails.json';
 
 const Inbox = () => {
   const [allChecked, setAllChecked] = useState(false);
+  const [filteredEmails, setFilteredEmails] = useState([]);
+  const [filter, setFilter] = useState('');
+
   let tags = {};
   emails?.messages.forEach(email => {
     email.tags.forEach(tag => {
@@ -18,14 +21,27 @@ const Inbox = () => {
     })
   });
 
-  console.log({ tags })
+  const handleTagSelect = (tag) => {
+    if (tag) {
+      const filteredList = emails?.messages.filter(email => {
+        return email.tags.includes(tag)
+      });
+      setFilter(tag);
+      setFilteredEmails(filteredList);
+    } else {
+      setFilter('');
+      setFilteredEmails([]);
+    }
+  };
 
   return (
     <InboxWrapper>
       <ActionsMenu checked={allChecked} toggleSelections={() => setAllChecked(prev => !prev)} />
-      <AsideMenu tags={tags} />
+      <AsideMenu tags={tags} handleTagSelect={handleTagSelect} />
       <EmailsTable className="emails-table">
-        {emails?.messages.map(email => <EmailRow email={email} key={email.id} checked={allChecked} />)}
+        {(filter ? filteredEmails : emails?.messages).map(email => (
+          <EmailRow email={email} key={email.id} checked={allChecked} />
+        ))}
       </EmailsTable>
     </InboxWrapper>
   );

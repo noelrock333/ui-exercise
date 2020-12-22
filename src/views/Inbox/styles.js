@@ -5,9 +5,12 @@ const InboxWrapper = styled.div`
   width: 100%;
   height: 100vh;
   display: grid;
-  grid-template-columns: 50px auto;
+  grid-template-columns: 150px auto;
   grid-template-rows: 50px auto;
   overflow-y: hidden;
+  @media (max-width: 750px) {
+    grid-template-columns: 50px auto;
+  }
   .actions-menu {
     grid-column: 2 / -1;
   }
